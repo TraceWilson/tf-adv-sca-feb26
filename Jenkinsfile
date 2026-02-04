@@ -61,7 +61,7 @@ pipeline {
             -v "$PWD:/repo" -w /repo \
             bridgecrew/checkov:latest \
             -d ${TF_DIR} \
-            --config-file .checkov.yml
+            --config-file /repo/.checkov.yml
         """
       }
     }
