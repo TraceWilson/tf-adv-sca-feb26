@@ -67,19 +67,19 @@ pipeline {
   //   }
   // }
 
-  stage("checkov") {
-    steps {
-      sh """
-        docker run --rm \
-          -v "${WORKSPACE}:/repo" -w /repo \
-          bridgecrew/checkov:latest \
-          -d /repo/infra \
-          --config-file /repo/infra/.checkov.yml \
-          --external-checks-dir /repo/.checkov/custom_policies
-      """
+    stage("checkov") {
+      steps {
+        sh """
+          docker run --rm \
+            -v "${WORKSPACE}:/repo" -w /repo \
+            bridgecrew/checkov:latest \
+            -d /repo/infra \
+            --config-file /repo/infra/.checkov.yml \
+            --external-checks-dir /repo/.checkov/custom_policies
+        """
+      }
     }
   }
-
   post {
     always {
       echo "Static validation completed."
